@@ -61,7 +61,9 @@ To generate plots for the run:
 
 ## Audio samples
 We provide samples from the AudioMNIST test set that were transformed by our model. The shared folder contains original sound clips and their corresponding transformed versions, with both male and female versions. Consider the sample from speaker 36 saying digit 1 as an example, the transformed samples as well as the original sample are as follow:
-PCMelGAN with sampled gender male: speaker_36_digit_1_sampled_gender_male.wav
-PCMelGAN with sampled gender female: speaker_36_digit_1_sampled_gender_female.wav
-Filter: speaker_36_digit_1_filtered.wav
-Original: speaker_36_digit_1_original.wav
+PCMelGAN with sampled gender male: speaker_36_digit_1_sampled_gender_male.wav  
+PCMelGAN with sampled gender female: speaker_36_digit_1_sampled_gender_female.wav  
+Filter: speaker_36_digit_1_filtered.wav  
+Original: speaker_36_digit_1_original.wav  
+
+Link to samples: https://www.dropbox.com/sh/oangx84ibhzodhs/AAAfG-PBW4Ne8KwdipAmKFy1a?dl=0
