@@ -12,8 +12,9 @@ import yaml
 from pathlib import Path
 import pandas as pd
 import time
-from models import *
-from filter import *
+#from models import *
+#from filter import *
+from networks import *
 from torch.autograd import Variable
 import glob
 from mel2wav.modules import MelGAN_Generator, Audio2Mel
@@ -239,19 +240,23 @@ def main():
                 orig_title = 'Original spectrogram - Gender: {} - Digit: {}'.format(gender_title, digit.item())
                 male_title = 'Sampled gender: male '
                 female_title = 'Sampled gender: female'
-                f_name_original = os.path.join(spec_result_dir, 'speaker_{}_digit_{}_original'.format(
+                filtered_title = 'Filtered spectrogram'
+                f_name_original = os.path.join(spec_result_dir, 'speaker_{}_digit_{}_original.png'.format(
                                     speaker_id.item(), digit.item()
                 ))
-                f_name_male = os.path.join(spec_result_dir, 'speaker_{}_digit_{}_male'.format(
+                f_name_male = os.path.join(spec_result_dir, 'speaker_{}_digit_{}_male.png'.format(
                                     speaker_id.item(), digit.item()
                 ))
-                f_name_female = os.path.join(spec_result_dir, 'speaker_{}_digit_{}_female'.format(
+                f_name_female = os.path.join(spec_result_dir, 'speaker_{}_digit_{}_female.png'.format(
                                     speaker_id.item(), digit.item()
                 ))
+                f_name_filtered = os.path.join(spec_result_dir, 'speaker_{}_digit_{}_filtered.png'.format(speaker_id.item(), digit.item()
+		))
 
                 save_spec_plot(f_name_original, spectrograms, orig_title)
-                save_spec_plot(f_name_male, filtered_male, male_title)
-                save_spec_plot(f_name_female, filtered_female, female_title)
+                save_spec_plot(f_name_male, generated_male, male_title)
+                save_spec_plot(f_name_female, generated_female, female_title)
+                save_spec_plot(f_name_filtered, filtered, filtered_title)
 
             # --------------------------
             # Audio calculations
@@ -351,16 +356,16 @@ def main():
 
         # fid_spec_tmp_F = compute_frechet_inception_distance(acts_real_spec, acts_fake_spec_F)
         # fid_spec_tmp_G = compute_frechet_inception_distance(acts_real_spec, acts_fake_spec_G)
-        fid_audio_tmp_F = compute_frechet_inception_distance(acts_real_audio, acts_fake_audio_F)
-        fid_audio_tmp_G = compute_frechet_inception_distance(acts_real_audio, acts_fake_audio_G)
-        if i == 0:
-           fid_inverted_audio_tmp = compute_frechet_inception_distance(acts_real_audio, acts_inverted_audio)
+        #fid_audio_tmp_F = compute_frechet_inception_distance(acts_real_audio, acts_fake_audio_F)
+        #fid_audio_tmp_G = compute_frechet_inception_distance(acts_real_audio, acts_fake_audio_G)
+        #if i == 0:
+    #       fid_inverted_audio_tmp = compute_frechet_inception_distance(acts_real_audio, acts_inverted_audio)
 
         # fid_spec_F.append(fid_spec_tmp_F)
-        fid_audio_F.append(fid_audio_tmp_F)
+        #fid_audio_F.append(fid_audio_tmp_F)
         # fid_spec_G.append(fid_spec_tmp_G)
-        fid_audio_G.append(fid_audio_tmp_G)
-        fid_inverted_audio.append(fid_inverted_audio_tmp)
+        #fid_audio_G.append(fid_audio_tmp_G)
+        #fid_inverted_audio.append(fid_inverted_audio_tmp)
 
         print("Computed accuracies and FID for run {}.".format(i))
 

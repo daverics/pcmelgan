@@ -31,26 +31,40 @@ def main():
     if not os.path.exists(save_dir):
         os.mkdir(save_dir)
 
+    spec_digit_acc_F_mean = []
+    spec_gender_acc_F_mean = []
     audio_digit_acc_F_mean = []
     audio_gender_acc_F_mean = []
     fid_audio_F_mean = []
 
+    spec_digit_acc_F_std = []
+    spec_gender_acc_F_std = []
     audio_digit_acc_F_std = []
     audio_gender_acc_F_std = []
     fid_audio_F_std = []
 
+    spec_digit_acc_G_mean = []
+    spec_gender_acc_G_mean = []
     audio_digit_acc_G_mean = []
     audio_gender_acc_G_mean = []
     fid_audio_G_mean = []
 
+    spec_digit_acc_G_std = []
+    spec_gender_acc_G_std = []
     audio_digit_acc_G_std = []
     audio_gender_acc_G_std = []
     fid_audio_G_std = []
 
     for experiment in args.experiment_paths:
 
+        spec_digit_acc_F_list = np.genfromtxt(os.path.join(experiment,'spec_digit_acc_F.csv'),delimiter=',')[1:]
+        spec_gender_acc_F_list = np.genfromtxt(os.path.join(experiment,'spec_orig_gender_acc_F.csv'),delimiter=',')[1:]
+
         audio_digit_acc_F_list = np.genfromtxt(os.path.join(experiment,'audio_digit_acc_F.csv'),delimiter=',')[1:]
         audio_gender_acc_F_list = np.genfromtxt(os.path.join(experiment,'audio_orig_gender_acc_F.csv'),delimiter=',')[1:]
+
+        spec_digit_acc_G_list = np.genfromtxt(os.path.join(experiment,'spec_digit_acc_G.csv'),delimiter=',')[1:]
+        spec_gender_acc_G_list = np.genfromtxt(os.path.join(experiment,'spec_orig_gender_acc_G.csv'),delimiter=',')[1:]
 
         audio_digit_acc_G_list = np.genfromtxt(os.path.join(experiment,'audio_digit_acc_G.csv'),delimiter=',')[1:]
         audio_gender_acc_G_list = np.genfromtxt(os.path.join(experiment,'audio_orig_gender_acc_G.csv'),delimiter=',')[1:]
@@ -58,10 +72,20 @@ def main():
         fid_audio_F_list = np.genfromtxt(os.path.join(experiment,'fid_audio_F.csv'),delimiter=',')[1:]
         fid_audio_G_list = np.genfromtxt(os.path.join(experiment,'fid_audio_G.csv'),delimiter=',')[1:]
 
+        spec_digit_acc_F_mean.append(np.mean(spec_digit_acc_F_list))
+        spec_digit_acc_F_std.append(np.std(spec_digit_acc_F_list))
+        spec_gender_acc_F_mean.append(np.mean(spec_gender_acc_F_list))
+        spec_gender_acc_F_std.append(np.std(spec_gender_acc_F_list))
+
         audio_digit_acc_F_mean.append(np.mean(audio_digit_acc_F_list))
         audio_digit_acc_F_std.append(np.std(audio_digit_acc_F_list))
         audio_gender_acc_F_mean.append(np.mean(audio_gender_acc_F_list))
         audio_gender_acc_F_std.append(np.std(audio_gender_acc_F_list))
+
+        spec_digit_acc_G_mean.append(np.mean(spec_digit_acc_G_list))
+        spec_digit_acc_G_std.append(np.std(spec_digit_acc_G_list))
+        spec_gender_acc_G_mean.append(np.mean(spec_gender_acc_G_list))
+        spec_gender_acc_G_std.append(np.std(spec_gender_acc_G_list))
 
         audio_digit_acc_G_mean.append(np.mean(audio_digit_acc_G_list))
         audio_digit_acc_G_std.append(np.std(audio_digit_acc_G_list))
@@ -80,7 +104,7 @@ def main():
         fid_writer = csv.writer(file, delimiter=',')
         for i in range(4):
             fid_writer.writerow(['$ {:5.2f} \pm {:5.2f} $'.format(fid_audio_F_mean[i], fid_audio_F_std[i]),
-            '$ {:5.2f} \pm {:5.2f} $'.format(fid_audio_G_mean[i], fid_audio_G_std[i])
+            '$ {:5.2f} \pm {:5.2f} $'.format(fid_audio_G_mean[i], fid_audio_G_std[i])])
 
     with open(os.path.join(save_dir,'audio_accs_pcgan.csv'), mode='w') as file:
         fid_writer = csv.writer(file, delimiter=',')
