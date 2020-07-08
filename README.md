@@ -1,6 +1,16 @@
 # Instructions to train the Private Conditional MelGAN
 In this README we include an overview of the file structure, a description on where to download the AudioMnist data used in this study, how to setup the environment to run the scripts in, and how to run the experiments and produce results.
 
+If you find this work useful, please cite us.
+```bibtex
+@article{ericsson2020adversarial,
+  title={Adversarial representation learning for private speech generation},
+  author={Ericsson, David and {\"O}stberg, Adam and Zec, Edvin Listo and Martinsson, John and Mogren, Olof},
+  journal={2020 Workshop on Self-supervision in Audio and Speech at the 37th International Conference on Machine Learning},
+  year={2020}
+}
+```
+
 
 ## File structure
 
