@@ -5,7 +5,7 @@ If you find this work useful, please cite us.
 ```bibtex
 @article{ericsson2020adversarial,
   title={Adversarial representation learning for private speech generation},
-  author={Ericsson, David and {\"O}stberg, Adam and Zec, Edvin Listo and Martinsson, John and Mogren, Olof},
+  author={Ericsson, David and {\"O}stberg, Adam and Listo Zec, Edvin and Martinsson, John and Mogren, Olof},
   journal={2020 Workshop on Self-supervision in Audio and Speech at the 37th International Conference on Machine Learning},
   year={2020}
 }
